@@ -19,15 +19,16 @@ class MovieHome extends StatefulWidget {
 }
 
 class _MovieHomeState extends State<MovieHome> {
- 
   bool isGrid = false;
   @override
   Widget build(BuildContext context) {
-       final screenWidth = MediaQuery.of(context).size.width;
+    /*     final screenWidth = MediaQuery.of(context).size.width;
     final screenHeight = MediaQuery.of(context).size.height;
 
-    // Calculate the aspect ratio based on the screen size
-    final aspectRatio = screenWidth / (100+screenHeight);
+    Calculate the aspect ratio based on the screen size
+    final aspectRatio = screenWidth / (screenHeight);
+    print("$aspectRatio");
+     */
     return Scaffold(
       backgroundColor: myBlackDark,
       appBar: AppBar(
@@ -68,13 +69,12 @@ class _MovieHomeState extends State<MovieHome> {
             return notificationListener(
               GridView.builder(
                 padding: const EdgeInsets.all(16),
-                gridDelegate:  SliverGridDelegateWithFixedCrossAxisCount(
+                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
                   crossAxisSpacing: 20,
                   mainAxisSpacing: 20,
-                  childAspectRatio: aspectRatio,
+                  childAspectRatio: .6,
                 ),
-                
                 itemBuilder: (context, index) {
                   return _ItemGrid(model: state.list[index]);
                 },
