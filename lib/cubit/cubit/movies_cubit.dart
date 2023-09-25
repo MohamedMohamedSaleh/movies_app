@@ -1,15 +1,23 @@
 import 'package:dio/dio.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
-import '../../data/model/model.dart';
+import '../../data/model/movies_data_model.dart';
 part 'movies_state.dart';
 
 class MoviesCubit extends Cubit<MoviesState> {
   MoviesCubit() : super(MoviesInitial());
   final List<MovieModel> _list = [];
   int pageNumber = 2;
+  bool isGrid = false;
 
-  
+  void convertToGrid() {
+    isGrid = true;
+    emit(MoviesIsGridViewState(list: _list));
+  } 
+   void convertToList() {
+    isGrid = false;
+    emit(MoviesIsListViewState(list: _list));
+  }
   
 
   void getData({bool fromPagination = false}) async {
@@ -26,7 +34,7 @@ class MoviesCubit extends Cubit<MoviesState> {
         pageNumber++;
         _list.addAll(model.results);
       }
-      emit(MoviesSuccessState(list: _list));
+      emit(MoviesIsListViewState(list: _list));
     } on DioException catch (ex) {
       await Future.delayed(const Duration(seconds: 2));
 

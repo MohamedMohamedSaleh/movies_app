@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:test_vedio/app_routes.dart';
-import 'package:test_vedio/constants/colors.dart';
-import 'package:test_vedio/cubit/cubit/movies_cubit.dart';
+import 'app_routes.dart';
+import 'constants/colors.dart';
+import 'cubit/cubit/movies_cubit.dart';
 
 
 

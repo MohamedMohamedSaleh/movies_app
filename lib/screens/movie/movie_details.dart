@@ -1,7 +1,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:test_vedio/constants/colors.dart';
-import 'package:test_vedio/data/model/model.dart';
+import 'package:test_vedio/data/model/movies_data_model.dart';
 
 class MovieDetails extends StatelessWidget {
   final MovieModel model;
