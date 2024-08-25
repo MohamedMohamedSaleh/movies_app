@@ -6,23 +6,13 @@ part 'movies_state.dart';
 
 class MoviesCubit extends Cubit<MoviesState> {
   MoviesCubit() : super(MoviesInitial());
-  final List<MovieModel> _list = [];
-  int pageNumber = 2;
-  bool isGrid = false;
-
-  void convertToGrid() {
-    isGrid = true;
-    emit(MoviesIsGridViewState(list: _list));
-  } 
-   void convertToList() {
-    isGrid = false;
-    emit(MoviesIsListViewState(list: _list));
-  }
-  
+  final List<MovieModel> moviesList = [];
+  int pageNumber = 1;
 
   void getData({bool fromPagination = false}) async {
     if (fromPagination) {
       emit(MoviesPaginationLoadingState());
+      pageNumber++;
     } else {
       emit(MoviesLoadingState());
     }
@@ -32,9 +22,9 @@ class MoviesCubit extends Cubit<MoviesState> {
       var model = MoviesData.fromJson(response.data);
       if (model.results.isNotEmpty) {
         pageNumber++;
-        _list.addAll(model.results);
+        moviesList.addAll(model.results);
       }
-      emit(MoviesIsListViewState(list: _list));
+      emit(MoviesSuccessState());
     } on DioException catch (ex) {
       await Future.delayed(const Duration(seconds: 2));
 

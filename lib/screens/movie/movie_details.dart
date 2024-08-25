@@ -1,7 +1,10 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_vedio/constants/colors.dart';
 import 'package:test_vedio/data/model/movies_data_model.dart';
+
+import '../../cubit/themes/my_theme_cubit.dart';
 
 class MovieDetails extends StatelessWidget {
   final MovieModel model;
@@ -10,9 +13,44 @@ class MovieDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: myBlackDark,
       appBar: AppBar(
         title: const Text("Movie Details"),
+        actions: [
+          StatefulBuilder(builder: (context, setState) {
+                 var cubit = context.read<MyThemeCubit>();
+
+           return Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              child: CircleAvatar(
+                radius: 18,
+                backgroundColor: Colors.black,
+                child: IconButton(
+                  onPressed: () {
+                    // var isDark = context.read<MyThemeCubit>().isDarkMode;
+                    context.read<MyThemeCubit>().toggleTheme(
+                        isDark: !cubit.isDarkMode);
+                    cubit.isDarkMode =
+                        !cubit.isDarkMode;
+                    setState(() {});
+                    // BlocProvider.of<MyThemeCubit>(context)
+                    //     .toggleTheme(isDark: true);
+                  },
+                  icon: (cubit.isDarkMode)
+                      ? const Icon(
+                          Icons.light_mode,
+                          size: 20,
+                          color: Colors.orangeAccent,
+                        )
+                      : const Icon(
+                          Icons.dark_mode_rounded,
+                          size: 20,
+                          color: Colors.white,
+                        ),
+                ),
+              ),
+            );
+          },),
+        ],
       ),
       body: ListView(
         children: [
@@ -21,8 +59,7 @@ class MovieDetails extends StatelessWidget {
           ),
           Text(
             model.title,
-            style: TextStyle(
-                fontSize: 21, color: mywhite, fontWeight: FontWeight.bold),
+            style: const TextStyle(fontSize: 21, fontWeight: FontWeight.bold),
             textAlign: TextAlign.center,
           ),
           Container(
@@ -61,7 +98,7 @@ class MovieDetails extends StatelessWidget {
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(15),
-                      color: myBlackLight),
+                      color: Theme.of(context).colorScheme.primaryContainer),
                   child: Row(
                     crossAxisAlignment: CrossAxisAlignment.end,
                     mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -81,15 +118,12 @@ class MovieDetails extends StatelessWidget {
                             children: [
                               Text(
                                 "${model.voteAverage}",
-                                style: TextStyle(
-                                    color: mywhite,
-                                    fontSize: 15,
-                                    fontWeight: FontWeight.bold),
+                                style: const TextStyle(
+                                    fontSize: 15, fontWeight: FontWeight.bold),
                               ),
-                              Text(
+                              const Text(
                                 "/10",
                                 style: TextStyle(
-                                  color: mywhite,
                                   fontSize: 10,
                                 ),
                               ),
@@ -100,32 +134,27 @@ class MovieDetails extends StatelessWidget {
                       Center(
                         child: Column(
                           children: [
-                            Text(
+                            const Text(
                               "vote count",
                               style: TextStyle(
-                                  color: mywhite,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
+                                  fontSize: 15, fontWeight: FontWeight.bold),
                             ),
                             const SizedBox(
                               height: 10,
                             ),
                             Text(
                               "${model.voteCount}",
-                              style: TextStyle(
-                                  color: mywhite,
-                                  fontSize: 15,
-                                  fontWeight: FontWeight.bold),
+                              style: const TextStyle(
+                                  fontSize: 15, fontWeight: FontWeight.bold),
                             ),
                           ],
                         ),
                       ),
                       Column(
                         children: [
-                          Text(
+                          const Text(
                             'popularity',
                             style: TextStyle(
-                              color: mywhite,
                               fontSize: 15,
                               fontWeight: FontWeight.bold,
                             ),
@@ -135,10 +164,8 @@ class MovieDetails extends StatelessWidget {
                           ),
                           Text(
                             "${model.popularity}",
-                            style: TextStyle(
-                                color: mywhite,
-                                fontSize: 15,
-                                fontWeight: FontWeight.bold),
+                            style: const TextStyle(
+                                fontSize: 15, fontWeight: FontWeight.bold),
                           ),
                         ],
                       )
@@ -151,12 +178,12 @@ class MovieDetails extends StatelessWidget {
                 Container(
                   padding: const EdgeInsets.all(10),
                   decoration: BoxDecoration(
-                    color: myBlackLight,
+                    color: Theme.of(context).colorScheme.primaryContainer,
                     borderRadius: BorderRadius.circular(15),
                   ),
                   child: Text(
                     "${model.overview}\nrelease date: ${model.releaseDate}",
-                    style: TextStyle(color: mywhite, fontSize: 19),
+                    style: const TextStyle(fontSize: 19),
                     textAlign: TextAlign.center,
                   ),
                 ),
@@ -164,15 +191,17 @@ class MovieDetails extends StatelessWidget {
                   height: 30,
                 ),
                 Container(
-
                   decoration:
                       BoxDecoration(borderRadius: BorderRadius.circular(15)),
                   clipBehavior: Clip.antiAlias,
                   child: CachedNetworkImage(
                     fit: BoxFit.cover,
                     placeholder: (context, url) => const SizedBox(
-                        height: 60,
-                        child: Center(child: CircularProgressIndicator())),
+                      height: 60,
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    ),
                     imageUrl: model.image,
                     errorWidget: (context, url, error) => Icon(
                       Icons.error,
@@ -183,6 +212,9 @@ class MovieDetails extends StatelessWidget {
                 ),
               ],
             ),
+          ),
+          const SizedBox(
+            height: 20,
           ),
         ],
       ),

@@ -1,66 +1,107 @@
 part of '../movie/movies_home.dart';
 
-class _ItemGrid extends StatelessWidget {
+class CustomGridView extends StatefulWidget {
   final MovieModel model;
-  const _ItemGrid({required this.model});
+  final int index;
+  const CustomGridView({super.key, required this.model, required this.index});
+
+  @override
+  State<CustomGridView> createState() => _CustomGridViewState();
+}
+
+class _CustomGridViewState extends State<CustomGridView> {
+  double width = 0;
+  bool isAnimation = false;
+  @override
+  void initState() {
+    super.initState();
+
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      isAnimation = true;
+      setState(() {});
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
+    width = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: () =>
-          Navigator.pushNamed(context, movieDetailsRoute, arguments: model),
-      child: Container(
-       
+      onTap: () => Navigator.pushNamed(context, movieDetailsRoute,
+          arguments: widget.model),
+      child: AnimatedContainer(
+        duration: Duration(
+            milliseconds: widget.index <= 5 ? 400 + (widget.index * 250) : 300),
+        curve: Curves.decelerate,
+        transform: Matrix4.translationValues(isAnimation ? 0 : -width, 0, 100),
         clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: myBlackLight,
+          boxShadow: [
+            BoxShadow(
+                color: Colors.black.withOpacity(.2),
+                blurRadius: 10,
+                offset: const Offset(3, 10))
+          ],
+          borderRadius: BorderRadius.circular(15),
+          color: Theme.of(context).colorScheme.primaryContainer,
         ),
         child: Column(
           children: [
-            CachedNetworkImage(
-            //   height: 180,
-              fit: BoxFit.cover,
-              placeholder: (context, url) => const SizedBox(
-                  height: 60,
-                  child: Center(child: CircularProgressIndicator())),
-              imageUrl: model.image,
-              errorWidget: (context, url, error) => Icon(
-                Icons.error,
-                size: 50,
-                color: Colors.red[700],
+            ClipRRect(
+              borderRadius: BorderRadius.circular(15),
+              child: Hero(
+                tag: widget.model.id,
+                child: CachedNetworkImage(
+                  height: 100,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                  placeholder: (context, url) => const Center(
+                      child: Text(
+                    'Loading...',
+                    style: TextStyle(color: Colors.grey),
+                  )),
+                  imageUrl: widget.model.posterPath,
+                  errorWidget: (context, url, error) => Icon(
+                    Icons.error,
+                    size: 50,
+                    color: Colors.red[700],
+                  ),
+                ),
               ),
             ),
             const SizedBox(
               height: 10,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.symmetric(horizontal: 8),
               child: Text(
-                model.title,
-                style: TextStyle(fontSize: 20, color: mywhite),
+                widget.model.title,
+                style:
+                    const TextStyle(fontSize: 20, fontWeight: FontWeight.w500),
                 maxLines: 1,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
             const SizedBox(
-              height: 17,
+              height: 8,
             ),
             Padding(
-              padding: const EdgeInsets.all(8.0),
+              padding: const EdgeInsets.only(left: 8, right: 8, bottom: 8),
               child: Text(
-                model.overview,
-                style: TextStyle(
-                    fontSize: 15,
-                    color: mywhite,
-                    fontWeight: FontWeight.w400),
+                widget.model.overview,
+                style:
+                    const TextStyle(fontSize: 15, fontWeight: FontWeight.w400),
                 maxLines: 2,
                 overflow: TextOverflow.ellipsis,
               ),
             ),
-            const SizedBox(
-              height: 17,
-            ),
+            // const SizedBox(
+            //   height: 17,
+            // ),
             Row(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -72,8 +113,7 @@ class _ItemGrid extends StatelessWidget {
                   width: 5,
                 ),
                 Text(
-                  model.voteAverage.toString(),
-                  style: TextStyle(color: mywhite),
+                  widget.model.voteAverage.toString(),
                 ),
               ],
             ),

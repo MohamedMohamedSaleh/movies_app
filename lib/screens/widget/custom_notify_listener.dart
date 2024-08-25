@@ -3,7 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../cubit/cubit/movies_cubit.dart';
 
-Widget notificationListener(Widget listview) {
+Widget notificationListener(Widget child) {
   return Builder(
     builder: (context) => NotificationListener<ScrollNotification>(
       onNotification: (notification) {
@@ -15,7 +15,7 @@ Widget notificationListener(Widget listview) {
         }
         return true;
       },
-      child: listview,
+      child: child,
     ),
   );
 }
