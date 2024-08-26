@@ -31,7 +31,6 @@ class SearchMoviesCubit extends Cubit<SearchMoviesState> {
 
           pageNumber++;
           searchMoviesList.addAll(model.results);
-          print('success');
         }
 
         emit(SearchMoviesSuccess());

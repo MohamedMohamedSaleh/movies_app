@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:test_vedio/constants/string.dart';
 import 'package:test_vedio/cubit/get_movies/movies_cubit.dart';
@@ -59,7 +58,6 @@ class _SearchMoviesViewState extends State<SearchMoviesView> {
             actions: [
               StatefulBuilder(builder: (context, setState) {
                 var cubit = context.read<MyThemeCubit>();
-                print(cubit.isDarkMode);
                 return CircleAvatar(
                   maxRadius: 18,
                   minRadius: 18,

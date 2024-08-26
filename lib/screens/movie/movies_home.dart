@@ -27,14 +27,12 @@ class MovieHome extends StatefulWidget {
 class _MovieHomeState extends State<MovieHome> {
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<MoviesCubit, MoviesState>(
+    return BlocBuilder<MoviesCubit, MoviesState>(
       buildWhen: (previous, current) =>
           current is! MoviesNotFoundState &&
           current is! MoviesPaginationLoadingState &&
           current is! MoviesPaginationLoadingFaildState,
-      listener: (context, state) {
-        print(state);
-      },
+      
       builder: (context, state) {
         MoviesCubit cubit = BlocProvider.of(context);
         return PopScope(
@@ -74,7 +72,6 @@ class _MovieHomeState extends State<MovieHome> {
                 ),
                 StatefulBuilder(builder: (context, setState) {
                   var cubit = context.read<MyThemeCubit>();
-                  print(cubit.isDarkMode);
                   return CircleAvatar(
                     maxRadius: 18,
                     minRadius: 18,
