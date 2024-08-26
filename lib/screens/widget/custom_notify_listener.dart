@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../cubit/cubit/movies_cubit.dart';
+import '../../cubit/get_movies/movies_cubit.dart';
 
 Widget notificationListener(Widget child) {
   return Builder(

@@ -18,7 +18,7 @@ class MyTheme {
     scaffoldBackgroundColor: mywhite,
     appBarTheme: const AppBarTheme(
       scrolledUnderElevation: 0,
-      centerTitle: true,
+      centerTitle: false,
       backgroundColor: mywhite,
       titleTextStyle: TextStyle(
           color: Colors.black, fontSize: 20, fontWeight: FontWeight.bold),
@@ -30,13 +30,13 @@ class MyTheme {
     scaffoldBackgroundColor: myBlackDark,
     colorScheme: ColorScheme.fromSeed(
       brightness: Brightness.dark,
-      primary: myBlackLight,
-      seedColor: myBlackLight,
+      primary: mywhite,
+      seedColor: mywhite,
       primaryContainer: myBlackLight,
     ),
     appBarTheme: const AppBarTheme(
       scrolledUnderElevation: 0,
-      centerTitle: true,
+      centerTitle: false,
       backgroundColor: myBlackDark,
       titleTextStyle: TextStyle(
           color: Colors.white, fontSize: 20, fontWeight: FontWeight.bold),

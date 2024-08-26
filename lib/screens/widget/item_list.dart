@@ -18,6 +18,7 @@ class _CustomListViewItemState extends State<CustomListViewItem> {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       isAnimation = true;
+      if (!mounted) return;
       setState(() {});
     });
   }
@@ -26,8 +27,10 @@ class _CustomListViewItemState extends State<CustomListViewItem> {
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, movieDetailsRoute,
-          arguments: widget.model),
+      onTap: () async {
+        await Navigator.pushNamed(context, movieDetailsRoute,
+            arguments: widget.model);
+      },
       child: AnimatedContainer(
         duration: Duration(
             milliseconds: widget.index <= 5 ? 400 + (widget.index * 250) : 300),

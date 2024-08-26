@@ -9,6 +9,7 @@ final class MoviesNotFoundState extends MoviesState {}
 
 final class MoviesLoadingState extends MoviesState {}
 
+
 final class MoviesSuccessState extends MoviesState {
 
 }

@@ -3,7 +3,12 @@ part of '../movie/movies_home.dart';
 class CustomGridView extends StatefulWidget {
   final MovieModel model;
   final int index;
-  const CustomGridView({super.key, required this.model, required this.index});
+  final bool isSearch;
+  const CustomGridView(
+      {super.key,
+      required this.model,
+      required this.index,
+      this.isSearch = false});
 
   @override
   State<CustomGridView> createState() => _CustomGridViewState();
@@ -31,8 +36,12 @@ class _CustomGridViewState extends State<CustomGridView> {
   Widget build(BuildContext context) {
     width = MediaQuery.of(context).size.width;
     return GestureDetector(
-      onTap: () => Navigator.pushNamed(context, movieDetailsRoute,
-          arguments: widget.model),
+      onTap: () async {
+        await Navigator.pushNamed(context, movieDetailsRoute,
+            arguments: widget.model);
+        if (!context.mounted) return;
+        FocusScope.of(context).unfocus();
+      },
       child: AnimatedContainer(
         duration: Duration(
             milliseconds: widget.index <= 5 ? 400 + (widget.index * 250) : 300),
@@ -52,7 +61,10 @@ class _CustomGridViewState extends State<CustomGridView> {
         child: Column(
           children: [
             ClipRRect(
-              borderRadius: BorderRadius.circular(15),
+              borderRadius: const BorderRadius.only(
+                  topLeft: Radius.circular(15),
+                  topRight:
+                      Radius.circular(15)), // Adjust the radius as needed(15),
               child: Hero(
                 tag: widget.model.id,
                 child: CachedNetworkImage(

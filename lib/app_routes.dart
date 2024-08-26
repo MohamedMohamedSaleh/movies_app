@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import 'constants/string.dart';
 import 'data/model/movies_data_model.dart';
 import 'screens/movie/movie_details.dart';
@@ -11,8 +10,9 @@ class AppRoute {
       case moviesRoute:
         return MaterialPageRoute(builder: ((context) => const MovieHome()));
       case movieDetailsRoute:
-      final model = settings.arguments as MovieModel;
-        return MaterialPageRoute(builder: ((context) => MovieDetails(model: model)));
+        final model = settings.arguments as MovieModel;
+        return MaterialPageRoute(
+            builder: ((context) => MovieDetails(model: model)));
     }
     return null;
   }

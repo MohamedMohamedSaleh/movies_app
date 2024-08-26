@@ -1,6 +1,5 @@
 import 'package:test_vedio/constants/string.dart';
 
-
 class MoviesData {
   late final int page;
   late final List<MovieModel> results;
@@ -35,17 +34,25 @@ class MovieModel {
 
   MovieModel.fromJson(Map<String, dynamic> json) {
     adult = json['adult'];
-    image = '$imageBaseUrl${json['backdrop_path']}';
+    if (json['backdrop_path'] != null) {
+      image = '$imageBaseUrl${json['backdrop_path']}';
+    } else {
+      image = 'https://t3.ftcdn.net/jpg/05/90/75/40/360_F_590754013_CoFRYEcAmLREfB3k8vjzuyStsDbMAnqC.jpg';
+    }
     genreIds = List.castFrom<dynamic, int>(json['genre_ids']);
     id = json['id'] ?? 0;
     originalLanguage = json['original_language'];
     overview = json['overview'] ?? '';
-    popularity = double.parse((json['popularity']??0).toString());
-    posterPath = "$imageBaseUrl${json['poster_path']}";
+    popularity = double.parse((json['popularity'] ?? 0).toString());
+    if (json['poster_path'] != null) {
+      posterPath = "$imageBaseUrl${json['poster_path']}";
+    } else {
+      posterPath = 'https://t3.ftcdn.net/jpg/05/90/75/40/360_F_590754013_CoFRYEcAmLREfB3k8vjzuyStsDbMAnqC.jpg';
+    }
     releaseDate = json['release_date'];
     title = json['title'] ?? "not found title";
     video = json['video'] ?? false;
-    voteAverage = double.parse((json['vote_average']??0).toString());
+    voteAverage = double.parse((json['vote_average'] ?? 0).toString());
 
     voteCount = json['vote_count'] ?? 0;
   }
