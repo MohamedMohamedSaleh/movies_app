@@ -4,7 +4,7 @@ Welcome to the **Movies App**! This Flutter-based application allows users to ex
 
 ## Demo Movies App
 
-```![Demo Gemini Chat](https://github.com/user-attachments/assets/64f6ef70-27f3-474f-ba00-7c738171733c)```
+![Demo Gemini Chat](https://github.com/user-attachments/assets/64f6ef70-27f3-474f-ba00-7c738171733c)
  
 
 <img align="center" src="https://64.media.tumblr.com/446f36513b5f3077749d1044fae86cc1/tumblr_n05yiydwuF1shpedgo1_500.gif" width= 70% height=5px>
