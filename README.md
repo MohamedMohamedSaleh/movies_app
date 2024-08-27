@@ -36,14 +36,14 @@ Movies App is a powerful and intuitive mobile application built with Flutter tha
 
 ## 📸 Screenshots
 
-<p align="center">
+<p align="left">
   <img src="https://github.com/user-attachments/assets/64d6a159-85a1-4631-b32a-808b3f2c915f" width="200" alt="Demo Movies App">
   <img src="https://github.com/user-attachments/assets/971a5fb2-109d-45dc-a78e-5bbe969593b7" width="200" alt="Demo Movies App">
   <img src="https://github.com/user-attachments/assets/c401d11e-1d55-4569-bf9f-94cfac9a61dd" width="200" alt="Demo Movies App">
   <img src="https://github.com/user-attachments/assets/c54a2a6f-bebb-428e-a167-731d10ae8d5f" width="200" alt="Demo Movies App">
 </p>
 
-<p align="center">
+<p align="left">
   <img src="https://github.com/user-attachments/assets/0c4ab35f-dd97-4185-816a-111a7cf61b14" width="200" alt="Demo Movies App">
   <img src="https://github.com/user-attachments/assets/45d27cfc-dbef-46b2-acd8-bee7337ce027" width="200" alt="Demo Movies App">
   <img src="https://github.com/user-attachments/assets/cf8b3a66-64d1-4758-9834-61239fa5c06e" width="200" alt="Demo Movies App">
