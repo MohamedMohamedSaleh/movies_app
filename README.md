@@ -4,7 +4,8 @@ Welcome to the **Movies App**! This Flutter-based application allows users to ex
 
 ## Demo Movies App
 
-///////////// demo her
+```![Demo Gemini Chat](https://github.com/user-attachments/assets/64f6ef70-27f3-474f-ba00-7c738171733c)```
+ 
 
 <img align="center" src="https://64.media.tumblr.com/446f36513b5f3077749d1044fae86cc1/tumblr_n05yiydwuF1shpedgo1_500.gif" width= 70% height=5px>
 
@@ -35,7 +36,20 @@ Movies App is a powerful and intuitive mobile application built with Flutter tha
 
 ## 📸 Screenshots
 
-_(Include some screenshots of your app here)_
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/64d6a159-85a1-4631-b32a-808b3f2c915f" width="200" alt="Demo Movies App">
+  <img src="https://github.com/user-attachments/assets/971a5fb2-109d-45dc-a78e-5bbe969593b7" width="200" alt="Demo Movies App">
+  <img src="https://github.com/user-attachments/assets/c401d11e-1d55-4569-bf9f-94cfac9a61dd" width="200" alt="Demo Movies App">
+  <img src="https://github.com/user-attachments/assets/c54a2a6f-bebb-428e-a167-731d10ae8d5f" width="200" alt="Demo Movies App">
+</p>
+
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/0c4ab35f-dd97-4185-816a-111a7cf61b14" width="200" alt="Demo Movies App">
+  <img src="https://github.com/user-attachments/assets/45d27cfc-dbef-46b2-acd8-bee7337ce027" width="200" alt="Demo Movies App">
+  <img src="https://github.com/user-attachments/assets/cf8b3a66-64d1-4758-9834-61239fa5c06e" width="200" alt="Demo Movies App">
+  <img src="https://github.com/user-attachments/assets/ed4b7144-ddd9-4661-aeff-f79025933125" width="200" alt="Demo Movies App">
+</p>
+
 
 <img align="center" src="https://64.media.tumblr.com/446f36513b5f3077749d1044fae86cc1/tumblr_n05yiydwuF1shpedgo1_500.gif" width= 70% height=5px>
 
