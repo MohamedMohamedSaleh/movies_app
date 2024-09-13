@@ -24,7 +24,7 @@ class SearchMoviesCubit extends Cubit<SearchMoviesState> {
      
         searchMoviesList.clear();
         var response = await Dio().get(
-            'https://api.themoviedb.org/3/search/movie?api_key=2001486a0f63e9e4ef9c4da157ef37cd&query=$query');
+            'https://api.themoviedb.org/3/search/moviequery=$query');
         var model = MoviesData.fromJson(response.data);
         if (model.results.isNotEmpty) {
 
