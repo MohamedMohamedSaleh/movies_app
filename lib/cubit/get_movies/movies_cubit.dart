@@ -20,7 +20,7 @@ class MoviesCubit extends Cubit<MoviesState> {
     try {
 
         var response = await Dio().get(
-            'https://api.themoviedb.org/3/movie/popular?api_key=bcf2553429a6cf5dfbbb7427841b8530&&page=$pageNumber');
+            'https://api.themoviedb.org/3/movie/popular?page=$pageNumber');
         var model = MoviesData.fromJson(response.data);
         if (model.results.isNotEmpty) {
 
